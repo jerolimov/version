@@ -10,22 +10,19 @@
 set -e
 
 if [ "$1" = "-s" -o "$1" = "--short" ]; then
-	if describe=`git describe --abbrev=0 2> /dev/null`; then
-		echo "$describe"
-	else
-		echo "0.0.0"
+	if ! describe=`git describe --abbrev=0 2> /dev/null`; then
+		describe="0.0.0"
 	fi
 else
-	if describe=`git describe --dirty 2> /dev/null`; then
-		echo "$describe"
-	else
+	# git describe --dirty doesn't mark projects with new (untracked) files..
+	if ! describe=`git describe 2> /dev/null`; then
 		count=`git rev-list --count HEAD`
 		rev=`git rev-parse --short HEAD`
-		if ! git diff --quiet; then
-			dirty="-dirty"
-		else
-			dirty=""
-		fi
-		echo "0.0.0-$count-$rev$dirty"
+		describe="0.0.0-$count-$rev"
+	fi
+	if [ -n "`git status --short`" ]; then
+		describe="$describe-dirty"
 	fi
 fi
+
+echo "$describe"

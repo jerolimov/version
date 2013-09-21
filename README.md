@@ -35,10 +35,31 @@ Options (for the version script):
 
 Checkout the other commands which could be integrated in your scripts.
 
-### What does real version mean?
+### Output format of the "real" version?
+
+It's based on/inspired by the `git describe` command.
+But this command works also if there is no tag yet.
+Call `version` or `version-git` directly.
+
+	Format: $tag or "0.0.0" [-commit counts with hash] [-dirty]
+
+	# Unreleased yet (zero tags) without/with uncommited changes
+	0.0.0-58-159ff48
+	0.0.0-58-159ff48-dirty
+	
+	# The release (tagged commit) without/with uncommited changes
+	0.17.0
+	0.17.0-dirty
+	
+	# Release with new commits without/with uncommited changes
+	0.17.0-58-159ff48
+	0.17.0-58-159ff48-dirty
+	
+
+### What does "real" version mean?
 
 It's a version string *based on the git repository*,
-which is in my humble opinion the *"only real"* source for such
+which is in my humble opinion *the only ""real"* source for such
 an information.
 
 And yes, this strings works also fine (or better) for
@@ -46,7 +67,7 @@ And yes, this strings works also fine (or better) for
 
 Maybe i will write sometime™ a blog entry why all the package manager files 
 with a version string are so broken -- for me.
-(Incl. and especially all these ```pom.xml```, ```package.json``` and so on.)
+(Incl. and especially all these `pom.xml`, `package.json` and so on.)
 
 ### Open for contributions
 
