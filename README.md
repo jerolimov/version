@@ -9,7 +9,7 @@
 
 	"Real" (git-based) version:
 	
-	    0-16-b140fba
+	    0.0.0-16-b140fba
 	
 	Your software says:
 	
