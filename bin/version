@@ -22,7 +22,7 @@ if [ -d .git ]; then
 	echo
 	echo "\"Real\" (git-based) version:"
 	echo
-	echo "   " `$0-git`
+	echo "   " `$0-git` `git branch | sed 's/^* /    (/;s/$/)/'`
 fi
 
 echo

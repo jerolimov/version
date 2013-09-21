@@ -9,7 +9,7 @@
 
 	"Real" (git-based) version:
 	
-	    0.0.0-16-b140fba
+	    0.0.0-16-b140fba (master)
 	
 	Your software says:
 	
@@ -20,7 +20,7 @@
 	
 	    some-project@0.1.0
 	    ├── bower@1.2.6
-	    ...
+	    ├── ...
 	
 	bower --color list:
 	
