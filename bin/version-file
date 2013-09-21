@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Search for an VERSION, Version or version file to output the content.
+#
+
+for file in VERSION Version version; do
+	if [ -f $file ]; then
+		cat $file
+		exit 0
+	fi
+done
+
+echo No version file found >&2
+exit 1

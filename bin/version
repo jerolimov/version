@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# Check which type of project we have and print out the version.
+# Works currently (like some of the scripts) only in the top
+# directory of an project. Feel free to provide a patch for this. :-)
+#
+# Use -a for automatically build (CI/CD)
+# Use -d to check the dependencies (with colors)
+#
+
+run() {
+	echo
+	echo $*:
+	echo
+	color=1 exec $* 2>&1 |
+	while read data; do
+		echo "   " $data
+	done
+}
+
+if [ -d .git ]; then
+	echo
+	echo "\"Real\" (git-based) version:"
+	echo
+	echo "   " `$0-git`
+fi
+
+echo
+echo Your software says:
+echo
+if [ -f package.json ]; then echo "   " package.json: `$0-node`; fi
+if [ -f bower.json ]; then echo "   " bower.json: `$0-bower`; fi
+if [ -f VERSION -o -f Version -o -f version ]; then echo " " Version file: `$0-file`; fi
+
+if [ "$1" = "-a" -o "$1" = "--all" ]; then
+	if [ -f package.json ]; then run npm list; fi
+	if [ -f bower.json ]; then run bower list; fi
+elif [ "$1" = "-d" -o "$1" = "--dependencies" ]; then
+	if [ -f package.json ]; then run npm list --color=always; fi
+	if [ -f bower.json ]; then run bower --color list; fi
+fi
+
+echo

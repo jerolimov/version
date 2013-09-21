@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+/**
+ * Reads the version number of a bower.json and prints them out.
+ */
+
+var fs = require('fs');
+
+fs.readFile('bower.json', function(err, data) {
+	if (err) {
+		console.error(err.toString());
+		process.exit(1);
+	}
+	data = JSON.parse(data);
+	version = data['version'];
+	console.log(version);
+});
