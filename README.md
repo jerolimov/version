@@ -1,4 +1,7 @@
-### Some small version info/debugging scripts.
+# Tiny scripts to print version numbers.
+## Just for my personal convenience.
+
+Feedback and contributions are welcome. :-)
 
 > Small scripts which checks the current (project) directory
 > and print out the version based on the git repo and some version files.
